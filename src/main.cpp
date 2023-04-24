@@ -13,7 +13,7 @@ using namespace cocos2d::extension;
 bool __fastcall MenuLayer_init(MenuLayer* self) {
     if (!MHook::getOriginal(MenuLayer_init)(self)) return false;
     //some shit or genius things here
-    CCSprite* spr = ModUtils::createSpriteOrPlaceholder("tutorial_01.png");
+    CCSprite* spr = ModUtils::createSprite("tutorial_01.png");
     spr->setPosition(CCMenu::create()->getPosition()); //idk why but CCMenu creates with center position 😏
     self->addChild(spr,10,666);
     return true;
