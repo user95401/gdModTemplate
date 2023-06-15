@@ -4,21 +4,25 @@
 #include <cocos2d.h>
 #include <gd.h>
 #include "mod_utils.hpp"
-#include "mapped-hooks.hpp"
+#include "hooks.hpp"
 #include <MinHook.h>
 using namespace cocos2d;
 using namespace gd;
 using namespace cocos2d::extension;
 
-bool __fastcall MenuLayer_init(MenuLayer* self) {
-    if (!MHook::getOriginal(MenuLayer_init)(self)) return false;
+inline bool(__thiscall* MenuLayer_init)(MenuLayer*);
+bool __fastcall MenuLayer_init_H(MenuLayer* self) {
+    if (!MenuLayer_init(self)) return false;
     //some shit or genius things here
     CCSprite* spr = ModUtils::createSprite("tutorial_01.png");
-    spr->setPosition(CCMenu::create()->getPosition()); //idk why but CCMenu creates with center position 😏
+    spr->setPosition(ModUtils::getCenterPoint()); //idk why but CCMenu creates with center position 😏
     self->addChild(spr,10,666);
     return true;
 }
-void __fastcall MenuLayer_onCreator(MenuLayer* self, void* a, cocos2d::CCObject* pSender) {
+inline void(__thiscall* MenuLayer_onCreator)(MenuLayer*, cocos2d::CCObject*);
+void __fastcall MenuLayer_onCreator_H(MenuLayer* self, void*, cocos2d::CCObject* pSender) {
+    //                                                 ^something that is incredibly important(void*) but forgettable
+    //MenuLayer_onCreator(); //not needed if u dont want include original code
     FLAlertLayer* alert = FLAlertLayer::create(self, "No creaor layer", "Oh ok", nullptr, 500.0, std::string("Just for example)\n<cr>My lady came down, she was thinking no harm Long Lankin stood ready to catch her in his arm There's blood in the kitchen. There's blood in the hall There's blood in the parlour where my lady did fall You might also like Long Lankin Steeleye Span Immolation of Night Invent Animate Without a Whisper Invent Animate -O master, O master, don't lay the blame on me 'Twas the false nurse and Lankin that killed your lady. Long Lankin was hung on a gibbet so high And the false nurse was burnt in a fire close by</c>"));
     alert->show();
 }
@@ -32,15 +36,20 @@ DWORD WINAPI thread_func(void* hModule) {
     // initialize minhook
     MH_Initialize();
 
-    std::random_device os_seed;
-    const unsigned int seed = os_seed();
-    std::mt19937 generator(seed);
-    std::uniform_int_distribution<int> distribute(250, 1000);
-    int sleepMs = distribute(generator);
-    Sleep(sleepMs);
-
-    MHook::registerHook(base + 0x1907b0, MenuLayer_init);
-    MHook::registerHook(base + 0x191cd0, MenuLayer_onCreator);
+    //creating hooks
+    /*
+    here is templates with #define
+    #define HOOK(base + 0x1907b0, MenuLayer_init, false)
+         ^target          ^               ^
+                          ^original and when hook with the suffix _H
+                                          ^do hook immediately(without a random delay)? (for no conflict to other mods set it false)
+    
+    u can get offsets and other in
+    https://github.com/matcool/re-scripts/blob/main/func_dump.txt
+    https://github.com/geode-sdk/geode/blob/main/bindings/GeometryDash.bro
+    */
+    HOOK(base + 0x1907b0, MenuLayer_init, false);
+    HOOK(base + 0x191cd0, MenuLayer_onCreator, false);
 
     // enable all hooks you've created with minhook
     MH_EnableHook(MH_ALL_HOOKS);
