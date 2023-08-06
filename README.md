@@ -1,7 +1,7 @@
 # gdModTemplate
 prepare mod speedrun
 ##### installed [curly-eureka](https://github.com/user95401/curly-eureka) requed
-### [Build instruction](https://github.com/user95401/gdModTemplate)
+### [Build instruction](https://github.com/user95401/gdModTemplate#build-instruction)
 - open terminal
 
 ![Screenshot_71](https://github.com/user95401/gdModTemplate/assets/90561697/6f0482c0-da87-47f5-bc6f-23e36e770717)
