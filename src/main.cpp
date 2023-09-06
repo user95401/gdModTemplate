@@ -1,11 +1,5 @@
-﻿#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
-#include <random>
-#include <cocos2d.h>
-#include <gd.h>
-#include "mod_utils.hpp"
+﻿#include "mod_utils.hpp"
 #include "hooks.hpp"
-#include <MinHook.h>
 using namespace cocos2d;
 using namespace gd;
 using namespace cocos2d::extension;
@@ -29,27 +23,21 @@ void __fastcall MenuLayer_onCreator_H(MenuLayer* self, void*, cocos2d::CCObject*
 DWORD WINAPI thread_func(void* hModule) {
     
     //Trail Bug Fix (Fixes trail cutting on high refresh rates)
-    ModUtils::write_bytes((DWORD)GetModuleHandleA("libcocos2d.dll") + 0xAE9BD, { 0xBB , 0xFF , 0x00 , 0x00 , 0x00 , 0x90 });
+    ModUtils::write_bytes(libcocos2d + 0xAE9BD, { 0xBB , 0xFF , 0x00 , 0x00 , 0x00 , 0x90 });
     //Verify Hack
     ModUtils::write_bytes(base + 0x71D48, { 0xEB });
     
     // initialize minhook
-    MH_Initialize();
+    MH_SafeInitialize();
 
     //creating hooks
     /*
-    here is templates with #define
-    #define HOOK(base + 0x1907b0, MenuLayer_init, false)
-         ^target          ^               ^
-                          ^original and when hook with the suffix _H
-                                          ^do hook immediately(without a random delay)? (for no conflict to other mods set it false)
-    
-    u can get offsets and other in
+    u can get targets and other in
     https://github.com/matcool/re-scripts/blob/main/func_dump.txt
     https://github.com/geode-sdk/geode/blob/main/bindings/GeometryDash.bro
     */
-    HOOK(base + 0x1907b0, MenuLayer_init, false);
-    HOOK(base + 0x191cd0, MenuLayer_onCreator, false);
+    HOOK(base + 0x1907b0, MenuLayer_init);
+    HOOK(base + 0x191cd0, MenuLayer_onCreator);
 
     // enable all hooks you've created with minhook
     MH_EnableHook(MH_ALL_HOOKS);
