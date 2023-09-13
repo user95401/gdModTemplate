@@ -1,0 +1,15 @@
+﻿{
+  "configurations": [
+    {
+      "name": "x86-Release",
+      "generator": "Ninja",
+      "configurationType": "Release",
+      "buildRoot": "${projectDir}\\out\\build\\${name}",
+      "installRoot": "${projectDir}\\out\\install\\${name}",
+      "inheritEnvironments": [ "msvc_x86" ]
+    },
+    {
+      "name": "x86 Release mode only!"
+    }
+  ]
+}
