@@ -1,0 +1,28 @@
+{
+	"geode": "1.0.0-beta.16",
+	"version": "${version}",
+	"id": "${developer}.${PROJECT_NAME}",
+	"name": "${PROJECT_NAME}",
+	"developer": "${developer}",
+	"description": "${description}",
+	"repository": "${repository}",
+	"issues": {
+		"url": "${issues_url}",
+		"info": "${issues_info}"
+	},
+	"resources": {
+		"files": [
+			"Resources/*"
+		],
+		"sprites": [
+			"Resources/*"
+		]
+	},
+	"settings": {
+		"inf": {
+			"name": "Configure in ini file!",
+			"description": "You can configure this mod\n<cr>only by .ini file</c> that located at\n<co>[your_game]/geode/config</c>",
+			"type": "string"
+		}
+	}
+}
