@@ -19,7 +19,11 @@ set(GEODE_MOD_OUTPUT_PATH "D:\\Games\\user666\\Geometry.Dash.v07.24.2021\\geode\
 include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")
 
 #mod
-file(GLOB_RECURSE src src/* src/Layers/*)
+file(GLOB_RECURSE src
+src/* 
+src/Layers/* 
+src/ImGui/*
+)
 add_library(${PROJECT_NAME} SHARED ${src} ${curly_eureka_src})
 
 #geode-makeup

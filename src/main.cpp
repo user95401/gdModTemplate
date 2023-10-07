@@ -25,7 +25,6 @@ DWORD WINAPI thread_func(void* hModule) {
     */
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
-
     // enable all hooks you've created with minhook
     MH_EnableHook(MH_ALL_HOOKS);
 
