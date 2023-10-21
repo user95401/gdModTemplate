@@ -4,11 +4,9 @@
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace gd;
+using namespace std;
 
-class MenuLayerExt : public MenuLayer {
+class LoadingLayerExt : public LoadingLayer {
 public:
-    inline static MenuLayerExt* me;
     static void CreateHooks();
-    void onChilipizdrik(CCObject* pSender);
 };
-

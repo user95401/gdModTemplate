@@ -2,17 +2,17 @@
 
 void CreatorLayerExt::onSomeBtn(cocos2d::CCObject* pSender) {
     //or reinterpret_cast<CCLayer*>(pSender) instead this->me
-    this->me->runAction(CCEaseExponentialOut::create(CCRotateBy::create(1.0, 60)));
+    this->runAction(CCEaseExponentialOut::create(CCRotateBy::create(1.0, 60)));
 }
 
 void CreatorLayerExt::onSomeBtn2(cocos2d::CCObject* pSender) {
     //or reinterpret_cast<CCLayer*>(pSender) instead this->me
-    this->me->runAction(CCEaseExponentialOut::create(CCScaleTo::create(1.0, this->me->getScale() - 0.1f)));//CCScaleBy is imposter
+    this->runAction(CCEaseExponentialOut::create(CCScaleTo::create(1.0, this->getScale() - 0.1f)));//CCScaleBy is imposter
 }
 
 void CreatorLayerExt::onSomeBtn3(cocos2d::CCObject* pSender) {
-    this->me->removeChild(reinterpret_cast<CCNode*>(this->me->getChildren()->objectAtIndex(0)));
-    reinterpret_cast<CCNode*>(this->me->getChildren()->objectAtIndex(0))->runAction(CCTintTo::create(0.1f, 180, 80, 80));
+    this->removeChild(reinterpret_cast<CCNode*>(this->getChildren()->objectAtIndex(0)));
+    reinterpret_cast<CCNode*>(this->getChildren()->objectAtIndex(0))->runAction(CCTintTo::create(0.1f, 180, 80, 80));
 }
 
 inline bool(__thiscall* CreatorLayer_init)(CreatorLayerExt*);

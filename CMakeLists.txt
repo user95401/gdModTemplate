@@ -21,22 +21,9 @@ include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")
 #mod
 file(GLOB_RECURSE src
 src/* 
-src/Layers/* 
-src/ImGui/*
+src/Layers/*
 )
 add_library(${PROJECT_NAME} SHARED ${src} ${curly_eureka_src})
 
 #geode-makeup
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/geode geode-build)
-
-#ARCHIVE-MOD
-if(EXISTS ${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.dll)
-    file(ARCHIVE_CREATE
-        OUTPUT "${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}.zip"
-        PATHS 
-            about.md
-            changelog.md
-            Resources
-            ${developer}.${PROJECT_NAME}.dll
-        FORMAT "zip")
-endif()

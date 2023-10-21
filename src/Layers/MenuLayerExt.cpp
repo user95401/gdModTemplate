@@ -1,9 +1,11 @@
 ﻿#include "MenuLayerExt.hpp"
 
-void MenuLayerExt::onLogo(cocos2d::CCObject* pSender) {
+void MenuLayerExt::onChilipizdrik(cocos2d::CCObject* pSender) {
+    //create Scene!!!!
     CCScene* Scene = CCScene::create();
-    Scene->addChild(CreatorLayer::create());
-    CCDirector::sharedDirector()->pushScene(CCTransitionFade::create(0.5, Scene));
+    Scene->addChild(CreatorLayer::create());//add CreatorLayer yoo
+    CCDirector::sharedDirector()->pushScene(CCTransitionFade::create(0.5, Scene));//push Scene
+    //small code mode^
 }
 
 inline bool(__thiscall* MenuLayer_init)(MenuLayerExt*);
@@ -14,19 +16,25 @@ bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
 
     //some shit or genius things here
     CCSprite* spr = ModUtils::createSprite("tutorial_01.png");
-    spr->setPosition(ModUtils::getCenterPoint()); //idk why but CCMenu creates with center position 😏
+    spr->setPosition(ModUtils::getCenterPoint());
     self->addChild(spr, 10, 666);
 
     CCMenu* Menu = CCMenu::create();
     Menu->setPosition(CCPoint());
     self->addChild(Menu);
 
-    CCSprite* logo = ModUtils::createSprite("logo.png");
-    logo->setScale(0.7f);
-    CCMenuItemSpriteExtra* logoItem = CCMenuItemSpriteExtra::create(logo, self, menu_selector(MenuLayerExt::onLogo));
-    logoItem->setPosition({ CCDirector::sharedDirector()->getScreenRight() - 35.f, CCDirector::sharedDirector()->getScreenTop() - 35.f });
+    CCMenuItemSpriteExtra* logoItem = CCMenuItemSpriteExtra::create(
+        ModUtils::createSprite("Chilipizdrik.png", 1),//(name, IgnoreScaleFactor)
+        self,
+        menu_selector(MenuLayerExt::onChilipizdrik)
+    );
+    logoItem->setPosition({ 
+        CCDirector::sharedDirector()->getScreenRight() - 35.f, 
+        CCDirector::sharedDirector()->getScreenTop() - 35.f 
+        });
     logoItem->m_bAnimationEnabled = false;
     logoItem->m_bColorEnabled = true;
+    logoItem->gd::CCMenuItemSpriteExtra::setScale(0.7f);
     Menu->addChild(logoItem);
 
     return true;
