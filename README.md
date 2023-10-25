@@ -1,7 +1,7 @@
 # gdModTemplate
 prepare mod on curly-eureka speedrun
 
-# course of actions:
+# course of actions to build it:
 1. Download and install Microsoft Visual Studio (2019 recommended)
    - add basic package for cpp dev
      
