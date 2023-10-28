@@ -11,7 +11,7 @@ void MenuLayerExt::onChilipizdrik(cocos2d::CCObject* pSender) {
 inline bool(__thiscall* MenuLayer_init)(MenuLayerExt*);
 bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
     MenuLayer_init(self);
-    MenuLayerExt::me = self;
+    self->me = self;
     twoTimesLayerInitHookEscape(self);//fucking works
 
     //some shit or genius things here
@@ -60,4 +60,20 @@ void __fastcall MenuLayer_onCreator_H(MenuLayerExt* self, void*, cocos2d::CCObje
 void MenuLayerExt::CreateHooks() {
     HOOK(base + 0x1907b0, MenuLayer_init);
     HOOK(base + 0x191cd0, MenuLayer_onCreator);
+    /*
+    using namespace std::chrono;
+    // get current time
+    auto now = system_clock::now();
+    // get number of milliseconds for the current second
+    // (remainder after division into seconds)
+    auto ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
+    // convert to std::time_t in order to convert to std::tm (broken time)
+    auto timer = system_clock::to_time_t(now);
+    // convert to broken time
+    std::tm bt = *std::localtime(&timer);
+    std::ostringstream oss;
+    oss << std::put_time(&bt, "%H:%M:%S"); // HH:MM:SS
+    oss << '.' << std::setfill('0') << std::setw(3) << ms.count();
+    CCMessageBox((std::string("all hooks created at ") + oss.str()).c_str(), __FUNCTION__);
+    */
 }
