@@ -1,8 +1,18 @@
 # gdModTemplate
 prepare mod on curly-eureka speedrun
 
-### Install [for geode](https://github.com/user95401/GMDModTemplate/blob/main/geode/release/user95401.mod.geode)
-put .geode file to GeometryDash/geode/mods
-### Install [dll](https://github.com/user95401/GMDModTemplate/blob/main/mod.dll)
-just load it with any modloader
+Made with curly-eureka, only for Windows.
 
+## Install for geode
+put .geode file to GeometryDash/geode/mods
+
+[Download](geode/release/user95401.mod.geode)
+
+## Install dll
+- extract dll file from zip
+- just load it with any modloader
+
+[Download](mod.zip)
+
+# build
+learn here https://github.com/user95401/GMDModTemplate/wiki/Prepare
