@@ -8,6 +8,14 @@ void MenuLayerExt::onChilipizdrik(cocos2d::CCObject* pSender) {
     //small code mode^
 }
 
+void MenuLayerExt::onOptionBtn(cocos2d::CCObject* pSender) {
+    //glad to show u a ValueSetupPopup that included in c-e
+    //lets create it for some_boolean_value from _main.cpp
+    ValueSetupPopup::create("some_boolean_value", "MAIN_SECTION", "geode/config/your_mod_cfg.ini", "Verify Hack if true")
+        ->isBoolean()//yea u can set some options so, also exists noElasticity() vanillaFadeOut()
+        ->show();//show up
+}
+
 inline bool(__thiscall* MenuLayer_init)(MenuLayerExt*);
 bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
     MenuLayer_init(self);
@@ -21,10 +29,10 @@ bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
 
     CCMenu* Menu = CCMenu::create();
     Menu->setPosition(CCPoint());
-    self->addChild(Menu);
+    self->addChild(Menu, 100, 5940);//do u know that exists addChild(node, index) and addChild(node, index, tag)???
 
     CCMenuItemSpriteExtra* logoItem = CCMenuItemSpriteExtra::create(
-        ModUtils::createSprite("Chilipizdrik.png", 1),//(name, IgnoreScaleFactor)
+        ModUtils::createSprite("Chilipizdrik.png", true),//(name, IgnoreScaleFactor)
         self,
         menu_selector(MenuLayerExt::onChilipizdrik)
     );
@@ -36,6 +44,18 @@ bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
     logoItem->m_bColorEnabled = true;
     logoItem->gd::CCMenuItemSpriteExtra::setScale(0.7f);
     Menu->addChild(logoItem);
+
+    CCMenuItemSpriteExtra* GJ_optionsBtn_001 = CCMenuItemSpriteExtra::create(
+        ModUtils::createSprite("GJ_optionsBtn_001.png"),
+        self,
+        menu_selector(MenuLayerExt::onOptionBtn)
+    );
+    GJ_optionsBtn_001->setPosition({
+        CCDirector::sharedDirector()->getScreenRight() - 125.f, 
+        CCDirector::sharedDirector()->getScreenTop() - 35.f 
+        });
+    GJ_optionsBtn_001->gd::CCMenuItemSpriteExtra::setScale(0.8f);
+    Menu->addChild(GJ_optionsBtn_001);
 
     return true;
 }
@@ -60,20 +80,4 @@ void __fastcall MenuLayer_onCreator_H(MenuLayerExt* self, void*, cocos2d::CCObje
 void MenuLayerExt::CreateHooks() {
     HOOK(base + 0x1907b0, MenuLayer_init);
     HOOK(base + 0x191cd0, MenuLayer_onCreator);
-    /*
-    using namespace std::chrono;
-    // get current time
-    auto now = system_clock::now();
-    // get number of milliseconds for the current second
-    // (remainder after division into seconds)
-    auto ms = duration_cast<milliseconds>(now.time_since_epoch()) % 1000;
-    // convert to std::time_t in order to convert to std::tm (broken time)
-    auto timer = system_clock::to_time_t(now);
-    // convert to broken time
-    std::tm bt = *std::localtime(&timer);
-    std::ostringstream oss;
-    oss << std::put_time(&bt, "%H:%M:%S"); // HH:MM:SS
-    oss << '.' << std::setfill('0') << std::setw(3) << ms.count();
-    CCMessageBox((std::string("all hooks created at ") + oss.str()).c_str(), __FUNCTION__);
-    */
 }

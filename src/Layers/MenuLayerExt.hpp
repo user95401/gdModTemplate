@@ -10,5 +10,6 @@ public:
     inline static MenuLayerExt* me;
     static void CreateHooks();
     void onChilipizdrik(CCObject* pSender);
+    void onOptionBtn(CCObject* pSender);
 };
 
