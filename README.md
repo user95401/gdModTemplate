@@ -9,7 +9,6 @@ put .geode file to GeometryDash/geode/mods
 [Download](geode/release/user95401.mod.geode)
 
 ## Install dll
-- extract dll file from zip
 - just load it with any modloader
 
 [Download](mod.zip)
