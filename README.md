@@ -11,7 +11,7 @@ put .geode file to GeometryDash/geode/mods
 ## Install dll
 - just load it with any modloader
 
-[Download](mod.zip)
+[Download](mod.dll)
 
 # build
 learn here https://github.com/user95401/GMDModTemplate/wiki/Prepare
