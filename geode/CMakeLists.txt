@@ -1,10 +1,11 @@
-﻿cmake_minimum_required(VERSION 3.10.0)
+cmake_minimum_required(VERSION 3.10.0)
 
 # remove old files
 file(REMOVE 
 ${CMAKE_CURRENT_BINARY_DIR}/../mod.json
 ${CMAKE_CURRENT_BINARY_DIR}/../about.md
 ${CMAKE_CURRENT_BINARY_DIR}/../changelog.md
+${CMAKE_CURRENT_BINARY_DIR}/../support.md
 ${CMAKE_CURRENT_BINARY_DIR}/../logo.png
 ${CMAKE_CURRENT_BINARY_DIR}/../${developer}.${PROJECT_NAME}.dll
 )
@@ -25,6 +26,12 @@ endif()
 if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/changelog.md) #can be deleted so escape "not found"
     set(changelog ${CMAKE_CURRENT_BINARY_DIR}/../changelog.md)
     configure_file(changelog.md ${changelog})
+endif()
+
+#configure support.md
+if(EXISTS ${CMAKE_CURRENT_LIST_DIR}/support.md) #can be deleted so escape "not found"
+    set(support ${CMAKE_CURRENT_BINARY_DIR}/../support.md)
+    configure_file(support.md ${support})
 endif()
 
 #configure logo.png
@@ -55,6 +62,7 @@ if(EXISTS ${LIBRARY_OUTPUT_PATH}/${PROJECT_NAME}.dll)
         ${CMAKE_CURRENT_BINARY_DIR}/../mod.json
         ${about}
         ${changelog}
+        ${support}
         ${logo}
         ${Resources}
         ${developer}.${PROJECT_NAME}.dll
