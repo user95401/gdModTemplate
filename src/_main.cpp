@@ -15,6 +15,7 @@ void ApplyPatches() {
 
     //btw curly-eureka has SimpleIni, i -i show how to use it
     CSimpleIni ini;
+    std::filesystem::create_directories("geode/config/");
     ini.LoadFile("geode/config/your_mod_cfg.ini");
     if (!(ini.KeyExists("MAIN_SECTION", "some_boolean_value")))//create value and section if dont exists
         ini.SetBoolValue("MAIN_SECTION", "some_boolean_value", true, "; //comment");
@@ -36,10 +37,11 @@ DWORD WINAPI PROCESS_ATTACH(void* hModule) {
     MH_SafeInitialize();
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
-    //geode console log
-    printf("Mod loaded\n");
+    //geode console log (printf)
+    ModUtils::log("Mod loaded\n");
     return 0;
 }
+
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
     if (ul_reason_for_call == DLL_PROCESS_ATTACH)
         CreateThread(0, 0, PROCESS_ATTACH, hModule, 0, 0);
