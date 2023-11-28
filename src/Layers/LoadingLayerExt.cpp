@@ -2,6 +2,7 @@
 
 const char* (__thiscall* LoadingLayer_getString)(LoadingLayer*);//0x18cf40
 const char* __fastcall LoadingLayer_getString_H(LoadingLayer* self, void*) {
+    LoadingLayer_getString(self);
     //geting stringfdd
     const char* s[5] = {
         "<cg>Loading speedrun...</c>",
@@ -16,7 +17,7 @@ const char* __fastcall LoadingLayer_getString_H(LoadingLayer* self, void*) {
 bool(__thiscall* LoadingLayer_init)(LoadingLayer* self, bool fromReload);
 bool __fastcall LoadingLayer_init_H(LoadingLayer* self, void* unk, bool fromReload) {
     if (!LoadingLayer_init(self, fromReload)) return false;
-    twoTimesLayerInitHookEscape(self);
+    twoTimesBoolCallEscapeByParrentNode(self);
 
     return true;
 }

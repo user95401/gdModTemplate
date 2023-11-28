@@ -19,7 +19,7 @@ inline bool(__thiscall* CreatorLayer_init)(CreatorLayerExt*);
 bool __fastcall CreatorLayer_init_H(CreatorLayerExt* self) {
     CreatorLayer_init(self);
     CreatorLayerExt::me = self;
-    twoTimesLayerInitHookEscape(self);//fucking works
+    twoTimesBoolCallEscapeByParrentNode(self);//fucking works
 
     //some shit or genius things here
 

@@ -20,7 +20,7 @@ inline bool(__thiscall* MenuLayer_init)(MenuLayerExt*);
 bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
     MenuLayer_init(self);
     self->me = self;
-    twoTimesLayerInitHookEscape(self);//fucking works
+    twoTimesBoolCallEscapeByParrentNode(self);//fucking works
 
     //some shit or genius things here
     CCSprite* spr = ModUtils::createSprite("tutorial_01.png");

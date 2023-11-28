@@ -7,6 +7,8 @@ using namespace gd;
 #include "Layers/MenuLayerExt.hpp"
 #include "Layers/CreatorLayerExt.hpp"
 #include "Layers/LoadingLayerExt.hpp"
+//look it :>
+#include "Layers/MappedHooksExample.hpp"
 
 #include "SimpleIni.h"
 void ApplyPatches() {
@@ -31,19 +33,26 @@ DWORD WINAPI PROCESS_ATTACH(void* hModule) {
     //ApplyPatches i guess
     ApplyPatches();
     //instant hooks
+    /*
+        if u create mod only for geode
+        u can moove instant hooks
+        over safe hooks and 
+        in mod.json add early-load with true value
+    */
     MH_Initialize();
     LoadingLayerExt::CreateHooks();
     // safe hooks
     MH_SafeInitialize();
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
+    OptionsLayerExt::CreateHooks();//MappedHooksExample
     //geode console log (printf)
-    ModUtils::log("Mod loaded\n");
+    ModUtils::log("Mod loaded");
     return 0;
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-    if (ul_reason_for_call == DLL_PROCESS_ATTACH)
+    if (ul_reason_for_call == DLL_PROCESS_ATTACH) 
         CreateThread(0, 0, PROCESS_ATTACH, hModule, 0, 0);
     return TRUE;
 }
