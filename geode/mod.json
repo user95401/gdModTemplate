@@ -6,7 +6,8 @@
 	"developer": "${developer}",
 	"description": "${description}",
 	"repository": "${repository}",
-	"early-load": true,
+	"### early-load comment ###": "its can increase chance of game crash at CCApplication stuff, idk why",
+	"early-load": false,
 	"issues": {
 		"url": "${issues_url}",
 		"info": "${issues_info}"
