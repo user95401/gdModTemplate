@@ -7,8 +7,7 @@ using namespace gd;
 #include "Layers/MenuLayerExt.hpp"
 #include "Layers/CreatorLayerExt.hpp"
 #include "Layers/LoadingLayerExt.hpp"
-//look it :>
-#include "Layers/MappedHooksExample.hpp"
+#include "Layers/MappedHooksExample.hpp"//look it :>
 
 #include "SimpleIni.h"
 void ApplyPatches() {
@@ -32,17 +31,9 @@ void ApplyPatches() {
 DWORD WINAPI PROCESS_ATTACH(void* hModule) {
     //ApplyPatches i guess
     ApplyPatches();
-    //instant hooks
-    /*
-        if u create mod only for geode
-        u can moove instant hooks
-        over safe hooks and 
-        in mod.json add early-load with true value
-    */
+    //create and enable hooks
     MH_Initialize();
     LoadingLayerExt::CreateHooks();
-    // safe hooks
-    MH_SafeInitialize();
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
     OptionsLayerExt::CreateHooks();//MappedHooksExample

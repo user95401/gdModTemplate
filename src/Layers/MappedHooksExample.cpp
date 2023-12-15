@@ -35,7 +35,6 @@ void __fastcall OptionsLayer_customSetup(OptionsLayerExt* self) {
     logoItem->m_bColorEnabled = true;
     logoItem->gd::CCMenuItemSpriteExtra::setScale(0.7f);
     self->m_pLayer->addChild(CCMenu::createWithItem(logoItem));
-
 }
 
 void OptionsLayerExt::CreateHooks() {
