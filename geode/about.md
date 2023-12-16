@@ -2,10 +2,6 @@
 
 ${description}
 
-## <co>Converted for Geode</c>
----
-
-<cr>This is traditional mod that uses minhook, gd.h, cocos-haders!
-
-BUT! In general, this mod works, and IN MOST CASES IT is COMPATIBLE.
-- Made with curly-eureka</c>
+## <co><cy>Adapted</c> for Geode Loader</c>
+<cr>This is traditional mod that uses minhook, gd.h, cocos-haders.</c>
+[Made with curly-eureka](https://github.com/user95401/curly-eureka)

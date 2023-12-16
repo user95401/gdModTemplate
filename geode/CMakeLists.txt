@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.10.0)
 
+message("geode makeup started, list dir: ${CMAKE_CURRENT_LIST_DIR}")
+
 # remove old files
 file(REMOVE 
 ${CMAKE_CURRENT_BINARY_DIR}/../mod.json

@@ -7,7 +7,7 @@
 	"description": "${description}",
 	"repository": "${repository}",
 	"### early-load comment ###": "its can increase chance of game crash at CCApplication stuff, idk why",
-	"early-load": false,
+	"early-load": true,
 	"issues": {
 		"url": "${issues_url}",
 		"info": "${issues_info}"

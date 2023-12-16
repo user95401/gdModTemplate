@@ -1,5 +1,5 @@
-﻿#include "mod_utils.hpp"
-#include "hooks.hpp"
+﻿#include "ModUtils.hpp"
+#include "HooksUtils.hpp"
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace gd;
@@ -39,6 +39,7 @@ DWORD WINAPI PROCESS_ATTACH(void* hModule) {
     OptionsLayerExt::CreateHooks();//MappedHooksExample
     //geode console log (printf)
     ModUtils::log("Mod loaded");
+    CCMessageBox("asd bros", __func__);
     return 0;
 }
 

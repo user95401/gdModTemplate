@@ -1,6 +1,6 @@
 ﻿#pragma once
-#include "hooks.hpp"
-#include "mod_utils.hpp"
+#include "HooksUtils.hpp"
+#include "ModUtils.hpp"
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace gd;
@@ -13,4 +13,3 @@ public:
     void onSomeBtn2(cocos2d::CCObject* pSender);
     void onSomeBtn3(cocos2d::CCObject* pSender);
 };
-
