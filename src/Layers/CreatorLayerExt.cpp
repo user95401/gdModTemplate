@@ -15,7 +15,7 @@ void CreatorLayerExt::onSomeBtn3(cocos2d::CCObject* pSender) {
     reinterpret_cast<CCNode*>(this->getChildren()->objectAtIndex(0))->runAction(CCTintTo::create(0.1f, 180, 80, 80));
 }
 
-inline bool(__thiscall* CreatorLayer_init)(CreatorLayerExt*);
+bool (__thiscall* CreatorLayer_init)(CreatorLayerExt*);//0x4de40
 bool __fastcall CreatorLayer_init_H(CreatorLayerExt* self) {
     CreatorLayer_init(self);
     CreatorLayerExt::me = self;

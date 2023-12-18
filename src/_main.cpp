@@ -28,7 +28,9 @@ void ApplyPatches() {
 
 }
 
-DWORD WINAPI PROCESS_ATTACH(void* hModule) {
+BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
+    if (ul_reason_for_call != DLL_PROCESS_ATTACH) return TRUE;
+    //why we create new thread for that even?
     //ApplyPatches i guess
     ApplyPatches();
     //create and enable hooks
@@ -37,14 +39,7 @@ DWORD WINAPI PROCESS_ATTACH(void* hModule) {
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
     OptionsLayerExt::CreateHooks();//MappedHooksExample
-    //geode console log (printf)
+    //console log (printf)
     ModUtils::log("Mod loaded");
-    CCMessageBox("asd bros", __func__);
-    return 0;
-}
-
-BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
-    if (ul_reason_for_call == DLL_PROCESS_ATTACH) 
-        CreateThread(0, 0, PROCESS_ATTACH, hModule, 0, 0);
     return TRUE;
 }

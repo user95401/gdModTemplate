@@ -16,14 +16,14 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_CURRENT_LIST_DIR}") # dll output
 set(GEODE_MOD_OUTPUT_PATH "D:\\Games\\user666\\Geometry.Dash.v07.24.2021\\geode\\mods") # geode mod output
 
 #curly-eureka
-include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")# "\" must be escaped by \\  
+include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")# "\" must be escaped by \\
 
 #mod
-file(GLOB_RECURSE src
+file(GLOB_RECURSE SRC
 src/* 
 src/Layers/*
 )
-add_library(${PROJECT_NAME} SHARED ${src} ${curly_eureka_src})
+add_library(${PROJECT_NAME} SHARED ${SRC} ${CURLY_EUREKA_SRC})
 
 #geode-makeup
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/geode geode-build)
