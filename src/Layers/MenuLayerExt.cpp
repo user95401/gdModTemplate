@@ -1,7 +1,7 @@
 ﻿#include "MenuLayerExt.hpp"
 #include "_CustomLayer.hpp"
 
-void MenuLayerExt::onChilipizdrik(cocos2d::CCObject* pSender) {
+void MenuLayerExt::onChilipizdrik(CCObject* pSender) {
     //create Scene!!!!
     CCScene* Scene = CCScene::create();
     Scene->addChild(CreatorLayer::create());//add CreatorLayer yoo
@@ -9,7 +9,7 @@ void MenuLayerExt::onChilipizdrik(cocos2d::CCObject* pSender) {
     //small code mode^
 }
 
-void MenuLayerExt::onOptionBtn(cocos2d::CCObject* pSender) {
+void MenuLayerExt::onOptionBtn(CCObject* pSender) {
     //glad to show u a ValueSetupPopup that included in c-e
     //lets create it for some_boolean_value from _main.cpp
     ValueSetupPopup::create("some_boolean_value", "MAIN_SECTION", "geode/config/your_mod_cfg.ini", "Verify Hack if true")
@@ -17,9 +17,9 @@ void MenuLayerExt::onOptionBtn(cocos2d::CCObject* pSender) {
         ->show();//show up
 }
 
-bool(__thiscall* MenuLayer_init)(MenuLayerExt*);//0x1907b0
-bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
-    MenuLayer_init(self);
+//0x1907b0
+bool __fastcall MenuLayer_init(MenuLayerExt* self) {
+    MappedHooks::getOriginal(MenuLayer_init)(self);
     self->me = self;
     twoTimesBoolCallEscapeByParrentNode(self);//fucking works
 
@@ -90,9 +90,8 @@ bool __fastcall MenuLayer_init_H(MenuLayerExt* self) {
     return true;
 }
 
-void(__thiscall* MenuLayer_onCreator)(MenuLayerExt*, CCObject*);
-void __fastcall MenuLayer_onCreator_H(MenuLayerExt* self, void*, CCObject* pSender) {
-    //MenuLayer_onCreator not needed if u dont want include original code
+void __fastcall MenuLayer_onCreator(MenuLayerExt* self, void* edx, CCObject* pSender) {
+    //MappedHooks::getOriginal(MenuLayer_onCreator)(self, edx, pSender);//no org code
     FLAlertLayer* alert = FLAlertLayer::create(self, "No creaor layer", "Oh ok", nullptr, 490.000f, std::string("Just for example)\n<cr>My lady came down, she was thinking no harm Long Lankin stood ready to catch her in his arm There's blood in the kitchen. There's blood in the hall There's blood in the parlour where my lady did fall You might also like Long Lankin Steeleye Span Immolation of Night Invent Animate Without a Whisper Invent Animate -O master, O master, don't lay the blame on me 'Twas the false nurse and Lankin that killed your lady. Long Lankin was hung on a gibbet so high And the false nurse was burnt in a fire close by</c>"));
     alert->m_pLayer->runAction(
         CCRepeatForever::create(
@@ -107,6 +106,6 @@ void __fastcall MenuLayer_onCreator_H(MenuLayerExt* self, void*, CCObject* pSend
 }
 
 void MenuLayerExt::CreateHooks() {
-    HOOK(base + 0x1907b0, MenuLayer_init);
-    HOOK(base + 0x191cd0, MenuLayer_onCreator);
+    MappedHooks::registerHook(base + 0x1907b0, MenuLayer_init);
+    MappedHooks::registerHook(base + 0x191cd0, MenuLayer_onCreator);
 }

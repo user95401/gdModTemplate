@@ -1,7 +1,5 @@
-﻿#include "MappedHooksExample.hpp"
+﻿#include "OptionsLayerExt.hpp"
 #include "MenuLayerExt.hpp"//for Chilipizdrik
-
-//present u MappedHooks created by Cvolton
 
 void __fastcall OptionsLayer_customSetup(OptionsLayerExt* self) {
     MappedHooks::getOriginal(OptionsLayer_customSetup)(self);

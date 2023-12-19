@@ -1,23 +1,23 @@
 ﻿#include "CreatorLayerExt.hpp"
 
-void CreatorLayerExt::onSomeBtn(cocos2d::CCObject* pSender) {
+void CreatorLayerExt::onSomeBtn(CCObject* pSender) {
     //or reinterpret_cast<CCLayer*>(pSender) instead this->me
     this->runAction(CCEaseExponentialOut::create(CCRotateBy::create(1.0, 60)));
 }
 
-void CreatorLayerExt::onSomeBtn2(cocos2d::CCObject* pSender) {
+void CreatorLayerExt::onSomeBtn2(CCObject* pSender) {
     //or reinterpret_cast<CCLayer*>(pSender) instead this->me
     this->runAction(CCEaseExponentialOut::create(CCScaleTo::create(1.0, this->getScale() - 0.1f)));//CCScaleBy is imposter
 }
 
-void CreatorLayerExt::onSomeBtn3(cocos2d::CCObject* pSender) {
+void CreatorLayerExt::onSomeBtn3(CCObject* pSender) {
     this->removeChild(reinterpret_cast<CCNode*>(this->getChildren()->objectAtIndex(0)));
     reinterpret_cast<CCNode*>(this->getChildren()->objectAtIndex(0))->runAction(CCTintTo::create(0.1f, 180, 80, 80));
 }
 
-bool (__thiscall* CreatorLayer_init)(CreatorLayerExt*);//0x4de40
-bool __fastcall CreatorLayer_init_H(CreatorLayerExt* self) {
-    CreatorLayer_init(self);
+//0x4de40
+bool __fastcall CreatorLayer_init(CreatorLayerExt* self) {
+    MappedHooks::getOriginal(CreatorLayer_init)(self);
     CreatorLayerExt::me = self;
     twoTimesBoolCallEscapeByParrentNode(self);//fucking works
 
@@ -46,5 +46,5 @@ bool __fastcall CreatorLayer_init_H(CreatorLayerExt* self) {
 }
 
 void CreatorLayerExt::CreateHooks() {
-    HOOK(base + 0x4de40, CreatorLayer_init);
+    MappedHooks::registerHook(base + 0x4de40, CreatorLayer_init);
 }

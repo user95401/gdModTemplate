@@ -1,13 +1,14 @@
 ﻿#include "ModUtils.hpp"
 #include "HooksUtils.hpp"
 using namespace cocos2d;
-using namespace cocos2d::extension;
+using namespace extension;
 using namespace gd;
 
 #include "Layers/MenuLayerExt.hpp"
 #include "Layers/CreatorLayerExt.hpp"
 #include "Layers/LoadingLayerExt.hpp"
-#include "Layers/MappedHooksExample.hpp"//look it :>
+#include "Layers/OptionsLayerExt.hpp"
+#include "Layers/CocosHeadersOnlyHookExample.hpp"//look it :>
 
 #include "SimpleIni.h"
 void ApplyPatches() {
@@ -39,6 +40,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     MenuLayerExt::CreateHooks();
     CreatorLayerExt::CreateHooks();
     OptionsLayerExt::CreateHooks();//MappedHooksExample
+    GJGarageLayerSkit::CreateHooks();//CocosHeadersOnlyHookExample
     //console log (printf)
     ModUtils::log("Mod loaded");
     return TRUE;

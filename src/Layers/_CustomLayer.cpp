@@ -6,14 +6,14 @@ bool CustomLayer::init() {
     setKeypadEnabled(true);
     //allow touching for layer
     setTouchEnabled(true);
-
+    
     //we love that
     auto winSize = CCDirector::sharedDirector()->getWinSize();
 
     CCMenu* Menu = CCMenu::create();
     Menu->setPosition(CCPoint());
     addChild(Menu, 100, 5940);//do u know that exists addChild(node, index) and addChild(node, index, tag)???
-
+    
     auto label = CCLabelBMFont::create("Hello world!", "bigFont.fnt");
     label->setPosition(ModUtils::getCenterPoint());
     label->setRotation(12);
@@ -47,10 +47,46 @@ bool CustomLayer::init() {
     btn_chatHistory_001->setPositionY(80.000f);
     Menu->addChild(btn_chatHistory_001);
 
+    auto menuThatExistOnlyForBtnList = CCMenu::create();
+    addChild(menuThatExistOnlyForBtnList);
+    menuThatExistOnlyForBtnList->setPosition(ModUtils::getCenterPoint());
+    menuThatExistOnlyForBtnList->setPositionY(12.f);//move abit down from center
+
+    auto onChallenge = CCMenuItemSpriteExtra::create(ModUtils::createSprite("Challenge"), this, menu_selector(CreatorLayer::onChallenge));
+    menuThatExistOnlyForBtnList->addChild(onChallenge);
+    auto onLeaderboards = CCMenuItemSpriteExtra::create(ModUtils::createSprite("Leaderboards"), this, menu_selector(CreatorLayer::onLeaderboards));
+    menuThatExistOnlyForBtnList->addChild(onLeaderboards);
+    auto onMyLevels = CCMenuItemSpriteExtra::create(ModUtils::createSprite("MyLevels"), this, menu_selector(CreatorLayer::onMyLevels));
+    menuThatExistOnlyForBtnList->addChild(onMyLevels);
+    auto onSavedLevels = CCMenuItemSpriteExtra::create(ModUtils::createSprite("SavedLevels"), this, menu_selector(CreatorLayer::onSavedLevels));
+    menuThatExistOnlyForBtnList->addChild(onSavedLevels);
+    auto onDailyLevel = CCMenuItemSpriteExtra::create(ModUtils::createSprite("DailyLevel"), this, menu_selector(CreatorLayer::onDailyLevel));
+    menuThatExistOnlyForBtnList->addChild(onDailyLevel);
+    auto onWeeklyLevel = CCMenuItemSpriteExtra::create(ModUtils::createSprite("WeeklyLevel"), this, menu_selector(CreatorLayer::onWeeklyLevel));
+    menuThatExistOnlyForBtnList->addChild(onWeeklyLevel);
+    auto onFeaturedLevels = CCMenuItemSpriteExtra::create(ModUtils::createSprite("FeaturedLevels"), this, menu_selector(CreatorLayer::onFeaturedLevels));
+    menuThatExistOnlyForBtnList->addChild(onFeaturedLevels);
+    auto onFameLevels = CCMenuItemSpriteExtra::create(ModUtils::createSprite("FameLevels"), this, menu_selector(CreatorLayer::onFameLevels));
+    menuThatExistOnlyForBtnList->addChild(onFameLevels);
+    auto onMapPacks = CCMenuItemSpriteExtra::create(ModUtils::createSprite("MapPacks"), this, menu_selector(CreatorLayer::onMapPacks));
+    menuThatExistOnlyForBtnList->addChild(onMapPacks);
+    auto onOnlineLevels = CCMenuItemSpriteExtra::create(ModUtils::createSprite("OnlineLevels"), this, menu_selector(CreatorLayer::onOnlineLevels));
+    menuThatExistOnlyForBtnList->addChild(onOnlineLevels);
+    auto onGauntlets = CCMenuItemSpriteExtra::create(ModUtils::createSprite("Gauntlets"), this, menu_selector(CreatorLayer::onGauntlets));
+    menuThatExistOnlyForBtnList->addChild(onGauntlets);
+    auto onSecretVault = CCMenuItemSpriteExtra::create(ModUtils::createSprite("SecretVault"), this, menu_selector(CreatorLayer::onSecretVault));
+    menuThatExistOnlyForBtnList->addChild(onSecretVault);
+    auto onTreasureRoom = CCMenuItemSpriteExtra::create(ModUtils::createSprite("TreasureRoom"), this, menu_selector(CreatorLayer::onTreasureRoom));
+    menuThatExistOnlyForBtnList->addChild(onTreasureRoom);
+
+    menuThatExistOnlyForBtnList->alignItemsHorizontally();
+    menuThatExistOnlyForBtnList->setAnchorPoint(CCPointZero);
+    menuThatExistOnlyForBtnList->setScale((menuThatExistOnlyForBtnList->getContentSize().width / CCDirector::sharedDirector()->getWinSize().width) / 2);
+
     return true;
 }
 
-void CustomLayer::onSomeBtn(cocos2d::CCObject* pSender) {
+void CustomLayer::onSomeBtn(CCObject* pSender) {
     //totay we create CRAZY SHIT HERE
     // - notify with powershell
     std::string title = std::format("hi, {}!", std::string(GJAccountManager::sharedState()->getUsername()));
@@ -73,7 +109,7 @@ void CustomLayer::onBack(CCObject* object) {
     CCDirector::sharedDirector()->popSceneWithTransition(0.5f, PopTransition::kPopTransitionFade);
 }
 
-void CustomLayer::pushToMe(cocos2d::CCObject* pSender) {
+void CustomLayer::pushToMe(CCObject* pSender) {
     //soo, lets create CCScene with CustomLayer idk what to say else
     //small code king
     auto scene = CCScene::create();
