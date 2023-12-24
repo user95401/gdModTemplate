@@ -9,6 +9,7 @@ void MenuLayerExt::onChilipizdrik(CCObject* pSender) {
     //small code mode^
 }
 
+#include "ValueSetupPopup.hpp"//curly-eureka
 void MenuLayerExt::onOptionBtn(CCObject* pSender) {
     //glad to show u a ValueSetupPopup that included in c-e
     //lets create it for some_boolean_value from _main.cpp
