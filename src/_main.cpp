@@ -13,7 +13,7 @@ using namespace gd;
 #include "SimpleIni.h"
 void ApplyPatches() {
     //Trail Bug Fix (Fixes trail cutting on high refresh rates)
-    ModUtils::write_bytes(libcocos2d + 0xAE9BD, { 0xBB , 0xFF , 0x00 , 0x00 , 0x00 , 0x90 });
+    ModUtils::WriteProcMem(libcocos2d + 0xAE9BD, { 0xBB , 0xFF , 0x00 , 0x00 , 0x00 , 0x90 });
 
     //btw curly-eureka has SimpleIni, i -i show how to use it
     CSimpleIni ini;
@@ -25,7 +25,7 @@ void ApplyPatches() {
 
     //Verify Hack if some_boolean_value is true;
     if(ini.GetBoolValue("MAIN_SECTION", "some_boolean_value"))
-        ModUtils::write_bytes(base + 0x71D48, { 0xEB });
+        ModUtils::WriteProcMem(base + 0x71D48, { 0xEB });
 
 }
 
