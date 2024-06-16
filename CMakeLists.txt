@@ -12,7 +12,8 @@ set(description "Geometry Dash 2.113 Mod")
 set(lib_output "D:\\Games\\user666\\Geometry.Dash.v07.24.2021\\fif issue\\") # post build copy
 
 #curly-eureka
-include("C:\\Users\\Lenovo\\source\\curly-eureka\\CURLY-EUREKA-INCL.cmake")# "\" must be escaped by \\
+set(GAME_VERSION "2.1")
+include($ENV{CE_INCL})# CURLY-EUREKA-INCL.cmake
 
 #mod
 file(GLOB_RECURSE SRC
